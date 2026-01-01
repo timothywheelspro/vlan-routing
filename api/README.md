@@ -24,8 +24,27 @@ GITHUB_ERROR_URL=https://contruil.com/github/error
 
 ### 3. Run Locally
 
+**Option A: Using the run script (recommended)**
 ```bash
+# Set your client secret
+export GITHUB_CLIENT_SECRET=your_secret_here
+
+# Run
+./run.sh
+```
+
+**Option B: Direct uvicorn command**
+```bash
+export GITHUB_CLIENT_SECRET=your_secret_here
 uvicorn github_callback:app --reload --port 8000
+```
+
+**Option C: Using .env file**
+```bash
+# Create .env file with:
+# GITHUB_CLIENT_SECRET=your_secret_here
+# Then run:
+./run.sh
 ```
 
 ### 4. Test
