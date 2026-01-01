@@ -1,0 +1,69 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build static files
+        id: build
+        run: |
+          # Create build output directory
+          mkdir -p build_outputs
+          
+          # Copy portfolio files to build output
+          cp -r portfolio/* build_outputs/ || true
+          
+          # Copy root-level documentation files
+          cp README.md build_outputs/ || true
+          cp -r CYW_OS build_outputs/ || true
+          
+          # Copy key documentation files
+          cp IP-CLAIM.md build_outputs/ || true
+          cp combined_hash_manifest.md build_outputs/ || true
+          cp CYW_Defensive_Publication_Evidence_Record.md build_outputs/ || true
+          cp Triangle_Test_*.md build_outputs/ || true
+          
+          # Create index.html if it doesn't exist (redirect to portfolio/landing.html)
+          if [ ! -f build_outputs/index.html ]; then
+            echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=landing.html"></head><body>Redirecting to <a href="landing.html">landing page</a></body></html>' > build_outputs/index.html
+          fi
+          
+          echo "Build complete. Files in build_outputs/"
+
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build_outputs/
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
