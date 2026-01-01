@@ -1,0 +1,23 @@
+{
+  "bundle_hash": "4a1466d6193cd6d3c69952510cad6461c6aeeb0d3841171549c1aac9cc3c6758",
+  "hash_algorithm": "SHA-256",
+  "filed_date": "2025-12-30T06:42:05-05:00",
+  "priority_date": "December 30, 2025, 6:42:05 AM EST",
+  "inventor": "Timothy I. Wheels",
+  "organization": "Contruil LLC",
+  "status": "Prior art established, defensive publication active",
+  "description": "CYW Operating System - Complete Evidence Chain Bundle",
+  "contents": [
+    "Triangle Test Protocol specification",
+    "Four-Gate Authorization Framework",
+    "VLAN routing architecture (models 10/20/30/40/50)",
+    "Guardian drift detection methodology",
+    "Evidence chain protocol"
+  ],
+  "verification_file": "combined_hash_manifest.md",
+  "deployment_commit": "1249cb813a56595ef5483b7d0d768feac5b0d783",
+  "deployment_hash": "7847ec86f3acd35d01a294dbd0a9dee3bf71de9d17441074e0a5f1a69f633775",
+  "originstamp_ready": true,
+  "note": "This metadata is prepared for OriginStamp blockchain timestamping. The bundle_hash serves as the primary anchor point for prior art establishment."
+}
+
