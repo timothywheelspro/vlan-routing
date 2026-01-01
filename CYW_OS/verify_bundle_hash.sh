@@ -19,6 +19,8 @@ echo ""
 echo "Expected Hash: $EXPECTED_HASH"
 echo "Repository Root: $REPO_ROOT"
 echo "Priority Date: December 30, 2025, 6:42:05 AM EST"
+echo "Inventor: Timothy I. Wheels"
+echo "Organization: Contruil LLC"
 echo ""
 
 # Change to repo root for relative path checks
