@@ -12,11 +12,13 @@ EXPECTED_HASH="4a1466d6193cd6d3c69952510cad6461c6aeeb0d3841171549c1aac9cc3c6758"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-echo "CYW OS Bundle Hash Verification"
-echo "================================="
+echo "╔═══════════════════════════════════════════════════════════╗"
+echo "║     CYW OS Bundle Hash Verification                       ║"
+echo "╚═══════════════════════════════════════════════════════════╝"
 echo ""
 echo "Expected Hash: $EXPECTED_HASH"
 echo "Repository Root: $REPO_ROOT"
+echo "Priority Date: December 30, 2025, 6:42:05 AM EST"
 echo ""
 
 # Change to repo root for relative path checks
