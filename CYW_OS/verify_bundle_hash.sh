@@ -5,6 +5,7 @@
 # This script verifies that the bundle hash is consistent across all documentation
 # and ready for blockchain timestamping via OriginStamp.
 
+# Strict error handling: exit on error, undefined variables, or pipeline failures
 set -euo pipefail
 
 EXPECTED_HASH="4a1466d6193cd6d3c69952510cad6461c6aeeb0d3841171549c1aac9cc3c6758"
