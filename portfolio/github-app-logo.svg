@@ -1,0 +1,32 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#0b0f14"/>
+  
+  <!-- Main Circle/Orb -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#3de0ff" stroke-width="4" opacity="0.8"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#3de0ff" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Center Core -->
+  <circle cx="256" cy="256" r="60" fill="#3de0ff" opacity="0.3"/>
+  <circle cx="256" cy="256" r="40" fill="#3de0ff" opacity="0.6"/>
+  <circle cx="256" cy="256" r="20" fill="#3de0ff"/>
+  
+  <!-- Connecting Lines (Network) -->
+  <line x1="256" y1="76" x2="256" y2="196" stroke="#3de0ff" stroke-width="2" opacity="0.4"/>
+  <line x1="256" y1="316" x2="256" y2="436" stroke="#3de0ff" stroke-width="2" opacity="0.4"/>
+  <line x1="76" y1="256" x2="196" y2="256" stroke="#3de0ff" stroke-width="2" opacity="0.4"/>
+  <line x1="316" y1="256" x2="436" y2="256" stroke="#3de0ff" stroke-width="2" opacity="0.4"/>
+  
+  <!-- Diagonal Connections -->
+  <line x1="150" y1="150" x2="220" y2="220" stroke="#3de0ff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="362" y1="150" x2="292" y2="220" stroke="#3de0ff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="150" y1="362" x2="220" y2="292" stroke="#3de0ff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="362" y1="362" x2="292" y2="292" stroke="#3de0ff" stroke-width="1.5" opacity="0.3"/>
+  
+  <!-- Outer Nodes -->
+  <circle cx="256" cy="76" r="8" fill="#3de0ff"/>
+  <circle cx="256" cy="436" r="8" fill="#3de0ff"/>
+  <circle cx="76" cy="256" r="8" fill="#3de0ff"/>
+  <circle cx="436" cy="256" r="8" fill="#3de0ff"/>
+</svg>
+

@@ -1,0 +1,82 @@
+{
+  "income": {
+    "monthly": 5400,
+    "annual": 64800
+  },
+  "expenses": {
+    "fixed": 3200,
+    "variable_essential": 650,
+    "subscriptions": 180,
+    "debt": 450
+  },
+  "subscriptions": [
+    {
+      "name": "Netflix",
+      "monthly_cost": 15.99,
+      "annual_cost": 191.88,
+      "status": "active",
+      "last_used": "2025-12-25",
+      "category": "entertainment"
+    },
+    {
+      "name": "Adobe Creative Cloud",
+      "monthly_cost": 54.99,
+      "annual_cost": 659.88,
+      "status": "active",
+      "last_used": "2025-10-15",
+      "category": "software"
+    },
+    {
+      "name": "Gym Membership",
+      "monthly_cost": 49.99,
+      "annual_cost": 599.88,
+      "status": "inactive",
+      "last_used": "",
+      "category": "fitness"
+    },
+    {
+      "name": "Spotify",
+      "monthly_cost": 9.99,
+      "annual_cost": 119.88,
+      "status": "active",
+      "last_used": "2025-12-30",
+      "category": "entertainment"
+    },
+    {
+      "name": "Unused Software Subscription",
+      "monthly_cost": 29.99,
+      "annual_cost": 359.88,
+      "status": "inactive",
+      "last_used": "",
+      "category": "software"
+    },
+    {
+      "name": "Amazon Prime",
+      "monthly_cost": 14.99,
+      "annual_cost": 139,
+      "status": "active",
+      "last_used": "2025-12-28",
+      "category": "shopping"
+    }
+  ],
+  "nsf_fees": 245,
+  "bank_fees": 144,
+  "accounts": [
+    {
+      "name": "Primary Checking",
+      "current_balance": 850,
+      "type": "checking"
+    },
+    {
+      "name": "Emergency Savings",
+      "current_balance": 5200,
+      "type": "savings"
+    },
+    {
+      "name": "Business Account",
+      "current_balance": 300,
+      "type": "business"
+    }
+  ]
+}
+

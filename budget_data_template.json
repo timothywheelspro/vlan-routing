@@ -1,0 +1,37 @@
+{
+  "income": {
+    "monthly": 0,
+    "annual": 0
+  },
+  "expenses": {
+    "fixed": 0,
+    "variable_essential": 0,
+    "subscriptions": 0,
+    "debt": 0
+  },
+  "subscriptions": [
+    {
+      "name": "Netflix",
+      "monthly_cost": 0,
+      "annual_cost": 0,
+      "status": "active",
+      "last_used": "",
+      "category": "entertainment"
+    }
+  ],
+  "nsf_fees": 0,
+  "bank_fees": 0,
+  "accounts": [
+    {
+      "name": "Primary Checking",
+      "current_balance": 0,
+      "type": "checking"
+    },
+    {
+      "name": "Emergency Savings",
+      "current_balance": 0,
+      "type": "savings"
+    }
+  ]
+}
+

@@ -1,0 +1,64 @@
+================================================================================
+COMPREHENSIVE BUDGET ANALYSIS REPORT
+Generated: 2025-12-31 11:55:37
+================================================================================
+
+📊 MONTHLY CASH FLOW SUMMARY
+--------------------------------------------------------------------------------
+Monthly Income:          $5,400.00
+Fixed Expenses:          $3,200.00
+Variable Expenses:       $650.00
+Subscriptions:           $180.00
+Debt Payments:           $450.00
+Total Expenses:          $4,480.00
+Net Cash Flow:           $920.00
+
+💳 SUBSCRIPTION ANALYSIS
+--------------------------------------------------------------------------------
+Total Monthly Subscriptions: $175.94
+Total Annual Subscriptions:  $2,070.40
+
+✅ Keeping: 3 subscriptions
+⚠️  Consider Canceling: 1 subscriptions
+❌ Definitely Cancel: 2 subscriptions
+Potential Monthly Savings: $79.98
+Potential Annual Savings:  $959.76
+
+SUBSCRIPTIONS TO CANCEL:
+  - Gym Membership: $49.99/month
+  - Unused Software Subscription: $29.99/month
+
+💰 ACCOUNT BUFFER ANALYSIS
+--------------------------------------------------------------------------------
+Primary Checking:
+  Current Balance:  $850.00
+  Recommended:      $7,525.00
+  ⚠️  Shortfall:      $6,675.00
+Emergency Savings:
+  Current Balance:  $5,200.00
+  Recommended:      $19,350.00
+  ⚠️  Shortfall:      $14,150.00
+Business Account:
+  Current Balance:  $300.00
+  Recommended:      $1,290.00
+  ⚠️  Shortfall:      $990.00
+
+🛡️  NSF FEE PREVENTION PLAN
+--------------------------------------------------------------------------------
+Current NSF Fees (past 12 months): $245.00
+Current Bank Fees:                 $144.00
+
+RECOMMENDED ACTIONS:
+1. [HIGH] Cancel Unused Subscriptions
+   Monthly Savings: $79.98
+   Timeline: This week
+
+2. [CRITICAL] Establish $7525.00 buffer in Primary Checking
+   Current Shortfall: $6,675.00
+   Timeline: Within 30 days
+
+PROJECTED SAVINGS:
+  Monthly: $79.98
+  Annual:  $1,348.76
+
+================================================================================

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Science Portfolio — Timothy I. Wheels</title>
+  <meta name="description" content="Data Science & Software Engineering Portfolio — Financial analysis, validation systems, and production-grade state management." />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://timothywheels.com/index.html" />
+  <meta property="og:title" content="Data Science Portfolio — Timothy I. Wheels" />
+  <meta property="og:description" content="Data Science & Software Engineering Portfolio — Financial analysis, validation systems, and production-grade state management." />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://timothywheels.com/index.html" />
+  <meta property="twitter:title" content="Data Science Portfolio — Timothy I. Wheels" />
+  <meta property="twitter:description" content="Data Science & Software Engineering Portfolio — Financial analysis, validation systems, and production-grade state management." />
+  
+  <style>
+    :root { --bg:#0b0f14; --card:#0f1620; --text:#eaf2ff; --muted:#a9b7c7; --accent:#3de0ff; --line:#1f2b3a; }
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;}
+    .wrap{max-width:980px;margin:0 auto;padding:56px 20px;}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:40px}
+    .brand{font-weight:700;letter-spacing:.04em}
+    .pill{display:inline-block;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted);text-decoration:none}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:24px}
+    h1{font-size:42px;line-height:1.05;margin:0 0 12px}
+    h2{font-size:28px;line-height:1.2;margin:0 0 20px;color:var(--text)}
+    h3{font-size:22px;line-height:1.3;margin:0 0 12px;color:var(--accent)}
+    .sub{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 18px}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{background:var(--accent);color:#061019;border:0;border-radius:12px;padding:12px 14px;font-weight:700;text-decoration:none;display:inline-block;cursor:pointer}
+    .btn2{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:700;text-decoration:none;display:inline-block}
+    .footer{margin-top:46px;color:var(--muted);font-size:13px}
+    .note{color:var(--muted);font-size:13px;line-height:1.5}
+    
+    .project{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--line)}
+    .project:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .keywords{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px}
+    .keyword{background:rgba(61,224,255,0.1);color:var(--accent);padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;border:1px solid rgba(61,224,255,0.2)}
+    .features{margin:16px 0}
+    .features ul{margin:8px 0;padding-left:20px}
+    .features li{margin:6px 0;color:var(--muted);line-height:1.6}
+    .tech-stack{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+    .tech-stack strong{color:var(--accent);font-weight:600}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:24px 0}
+    .stat-card{background:rgba(61,224,255,0.05);border:1px solid rgba(61,224,255,0.2);border-radius:12px;padding:16px;text-align:center}
+    .stat-card .number{font-size:32px;font-weight:700;color:var(--accent);margin-bottom:4px}
+    .stat-card .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+    .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px}
+    .skill-category{background:rgba(61,224,255,0.03);border:1px solid var(--line);border-radius:12px;padding:16px}
+    .skill-category h4{color:var(--accent);margin:0 0 12px;font-size:16px}
+    .skill-category ul{list-style:none;padding:0;margin:0}
+    .skill-category li{color:var(--muted);font-size:14px;margin:8px 0;padding-left:16px;position:relative}
+    .skill-category li:before{content:"•";color:var(--accent);position:absolute;left:0;font-weight:700}
+    
+    @media (max-width:700px){
+      h1{font-size:32px}
+      h2{font-size:24px}
+      .stats{grid-template-columns:1fr}
+      .skills{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">TIMOTHY I. WHEELS</div>
+      <a class="pill" href="mailto:timothy@timothywheels.com">timothy@timothywheels.com</a>
+    </header>
+    
+    <div class="card">
+      <h1>Data Science Portfolio</h1>
+      <p class="sub">Selected projects showcasing data analysis, algorithmic systems, and production-grade implementations.</p>
+      <div class="cta">
+        <a class="btn2" href="landing.html">← Back to Home</a>
+        <a class="btn2" href="https://www.linkedin.com/in/timothywheelspro" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn2" href="https://contruil.com" target="_blank" rel="noreferrer">Contruil</a>
+        <a class="btn2" href="settings.html">CYW Settings</a>
+        <a class="btn2" href="architecture.html">Architecture</a>
+      </div>
+    </div>
+
+    <section id="projects">
+      <div class="card">
+        <h2>Featured Projects</h2>
+        
+        <div class="project">
+          <h3>Financial Budget Analysis System</h3>
+          <div class="keywords">
+            <span class="keyword">Financial Analysis</span>
+            <span class="keyword">Python</span>
+            <span class="keyword">Data Modeling</span>
+            <span class="keyword">Risk Mitigation</span>
+            <span class="keyword">NSF Prevention</span>
+          </div>
+          <p class="sub">A comprehensive budget analysis tool that processes financial data to identify cost-saving opportunities, predict cash flow issues, and prevent NSF fees through strategic buffer recommendations.</p>
+          <div class="features">
+            <strong style="color:var(--text);">Key Features:</strong>
+            <ul>
+              <li>Automated cash flow analysis (income vs. expenses)</li>
+              <li>Subscription cost analysis with cancellation recommendations</li>
+              <li>Account buffer calculations to prevent overdrafts</li>
+              <li>NSF fee prevention planning</li>
+              <li>Savings projections (monthly and annual)</li>
+            </ul>
+          </div>
+          <div class="tech-stack">
+            <strong>Technical Stack:</strong> <span style="color:var(--muted);">Python 3.9+, JSON data processing, Statistical calculations, Report generation</span>
+          </div>
+        </div>
+        
+        <div class="project">
+          <h3>Triangle Test Protocol — Multi-Validator Consensus System</h3>
+          <div class="keywords">
+            <span class="keyword">Algorithm Design</span>
+            <span class="keyword">Validation Systems</span>
+            <span class="keyword">Consensus Protocols</span>
+            <span class="keyword">State Machines</span>
+            <span class="keyword">Testing</span>
+          </div>
+          <p class="sub">A three-validator consensus protocol implementing a four-gate validation framework for ensuring output quality and integrity through sequential validation gates.</p>
+          <div class="features">
+            <strong style="color:var(--text);">Key Features:</strong>
+            <ul>
+              <li>Four-gate sequential validation (Meta, Routing, Payload, Audit)</li>
+              <li>Three-validator consensus system</li>
+              <li>Factual vs. structural validator separation</li>
+              <li>Conditional escalation and halt logic</li>
+              <li>Comprehensive test suite with unittest framework</li>
+            </ul>
+          </div>
+          <div class="tech-stack">
+            <strong>Technical Stack:</strong> <span style="color:var(--muted);">Python 3.9+, Dataclasses, Enum-based state management, Mock testing, Flowchart visualization</span>
+          </div>
+        </div>
+        
+        <div class="project">
+          <h3>State Machine & Identity Management Systems</h3>
+          <div class="keywords">
+            <span class="keyword">Finite State Machines</span>
+            <span class="keyword">Identity Systems</span>
+            <span class="keyword">Cryptographic Security</span>
+            <span class="keyword">System Architecture</span>
+          </div>
+          <p class="sub">Production-grade state management and decentralized identity (DID) systems with cryptographic integrity guarantees and audit trail generation.</p>
+          <div class="features">
+            <strong style="color:var(--text);">Key Features:</strong>
+            <ul>
+              <li>Event-driven state transitions with guard conditions</li>
+              <li>Identity-first design with DID management</li>
+              <li>Cryptographic integrity (Ed25519 signatures)</li>
+              <li>Multi-platform support (Python + Unity C#)</li>
+              <li>Comprehensive validation and testing</li>
+            </ul>
+          </div>
+          <div class="tech-stack">
+            <strong>Technical Stack:</strong> <span style="color:var(--muted);">Python 3.9+, C# / Unity, Cryptographic libraries, JSON canonicalization, SQLite</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stats">
+      <div class="card">
+        <h2>Project Statistics</h2>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="number">7,340+</div>
+            <div class="label">Lines of Code</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">6+</div>
+            <div class="label">Major Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">3</div>
+            <div class="label">Production Systems</div>
+          </div>
+          <div class="stat-card">
+            <div class="number">100%</div>
+            <div class="label">Test Coverage</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="card">
+        <h2>Technical Skills</h2>
+        <div class="skills">
+          <div class="skill-category">
+            <h4>Programming Languages</h4>
+            <ul>
+              <li>Python — Advanced</li>
+              <li>C# — Intermediate</li>
+              <li>SQL — Intermediate</li>
+              <li>Bash/Shell — Intermediate</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Data Science & Analysis</h4>
+            <ul>
+              <li>Financial data analysis</li>
+              <li>Statistical modeling</li>
+              <li>Risk assessment</li>
+              <li>Data validation</li>
+              <li>Report generation</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Software Engineering</h4>
+            <ul>
+              <li>System architecture</li>
+              <li>Algorithm design</li>
+              <li>Testing frameworks</li>
+              <li>State machine patterns</li>
+              <li>Cryptographic systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer" style="margin-top:40px;">
+      © <span id="year"></span> Timothy I. Wheels. All rights reserved.
+    </footer>
+  </div>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#0f1620" rx="64"/>
+  
+  <!-- CYW Text Logo -->
+  <text x="256" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="120" font-weight="700" fill="#3de0ff" text-anchor="middle" letter-spacing="-0.02em">CYW</text>
+  
+  <!-- Accent Line -->
+  <line x1="120" y1="320" x2="392" y2="320" stroke="#3de0ff" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Small accent dots -->
+  <circle cx="180" cy="320" r="4" fill="#3de0ff" opacity="0.8"/>
+  <circle cx="332" cy="320" r="4" fill="#3de0ff" opacity="0.8"/>
+</svg>
+

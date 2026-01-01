@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Developer Settings — CYW Architecture</title>
+  <meta name="description" content="Configure routing rules for the CYW multi-model architecture. Define which AI VLAN handles specific aspects of your projects." />
+  <style>
+    :root { --bg:#0b0f14; --card:#0f1620; --text:#eaf2ff; --muted:#a9b7c7; --accent:#3de0ff; --line:#1f2b3a; --success:#50c878; --warning:#ffd700; }
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;}
+    .wrap{max-width:980px;margin:0 auto;padding:56px 20px;}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:40px}
+    .brand{font-weight:700;letter-spacing:.04em}
+    .pill{display:inline-block;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted);text-decoration:none}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:24px}
+    h1{font-size:42px;line-height:1.05;margin:0 0 12px}
+    h2{font-size:28px;line-height:1.2;margin:0 0 20px;color:var(--text)}
+    h3{font-size:20px;line-height:1.3;margin:0 0 12px;color:var(--accent)}
+    .sub{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 18px}
+    .note{color:var(--muted);font-size:13px;line-height:1.5}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{background:var(--accent);color:#061019;border:0;border-radius:12px;padding:12px 14px;font-weight:700;text-decoration:none;display:inline-block;cursor:pointer}
+    .btn2{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:700;text-decoration:none;display:inline-block}
+    .footer{margin-top:46px;color:var(--muted);font-size:13px}
+    
+    .vlan-section{margin-bottom:32px;padding:20px;background:rgba(61,224,255,0.03);border:1px solid rgba(61,224,255,0.1);border-radius:12px}
+    .vlan-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .vlan-title{font-size:18px;font-weight:600;color:var(--accent)}
+    .toggle-switch{position:relative;display:inline-block;width:52px;height:28px}
+    .toggle-switch input{opacity:0;width:0;height:0}
+    .toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:var(--line);transition:.4s;border-radius:28px}
+    .toggle-slider:before{position:absolute;content:"";height:20px;width:20px;left:4px;bottom:4px;background-color:var(--text);transition:.4s;border-radius:50%}
+    input:checked + .toggle-slider{background-color:var(--accent)}
+    input:checked + .toggle-slider:before{transform:translateX(24px)}
+    .vlan-description{color:var(--muted);font-size:14px;line-height:1.6;margin-top:8px}
+    
+    .protocol-section{margin-top:32px;padding:20px;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:12px}
+    .select-group{margin:16px 0}
+    .select-group label{display:block;color:var(--muted);font-size:13px;margin-bottom:8px;font-weight:600}
+    select{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:14px;box-sizing:border-box}
+    select:focus{outline:none;border-color:var(--accent)}
+    
+    .gate-section{margin-top:32px;padding:20px;background:rgba(80,200,120,0.05);border:1px solid rgba(80,200,120,0.2);border-radius:12px}
+    .checkbox-group{display:flex;align-items:center;gap:12px;margin:12px 0}
+    .checkbox-group input[type="checkbox"]{width:20px;height:20px;cursor:pointer}
+    .checkbox-group label{cursor:pointer;color:var(--text);font-size:14px}
+    
+    .save-status{display:none;margin-top:16px;padding:12px;background:rgba(80,200,120,0.1);border:1px solid var(--success);border-radius:12px;color:var(--success);font-size:14px}
+    .save-status.show{display:block}
+    
+    .budget-section{margin-top:32px;padding:20px;background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.2);border-radius:12px}
+    .budget-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px}
+    .budget-table th{text-align:left;padding:10px;border-bottom:1px solid var(--line);color:var(--accent);font-weight:600}
+    .budget-table td{padding:10px;border-bottom:1px solid rgba(31,43,58,0.5);color:var(--muted)}
+    .budget-table tr:last-child td{border-bottom:none;font-weight:600;color:var(--text)}
+    .budget-table input{width:100%;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:13px;box-sizing:border-box}
+    .budget-table input:focus{outline:none;border-color:var(--accent)}
+    .budget-table textarea{width:100%;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:13px;box-sizing:border-box;resize:vertical;min-height:40px}
+    .budget-subsection{margin:24px 0;padding:16px;background:rgba(61,224,255,0.02);border-left:3px solid var(--accent);border-radius:6px}
+    .budget-subsection h4{margin:0 0 12px;color:var(--accent);font-size:16px}
+    .budget-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+    
+    @media (max-width:700px){
+      h1{font-size:32px}
+      h2{font-size:24px}
+      .vlan-header{flex-direction:column;align-items:flex-start;gap:12px}
+      .budget-table{font-size:11px}
+      .budget-table th,.budget-table td{padding:6px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">TIMOTHY I. WHEELS</div>
+      <a class="pill" href="mailto:timothy@timothywheels.com">timothy@timothywheels.com</a>
+    </header>
+    
+    <div class="card">
+      <h1>Developer Settings</h1>
+      <p class="sub"><strong>You're not configuring preferences. You're defining routing rules.</strong><br/>
+      This page controls how your creative work moves through the CYW multi-model architecture. Each setting determines which AI VLAN handles specific aspects of your projects—research, narrative expansion, clarity audit, structural critique, or final integration.</p>
+      
+      <div class="cta">
+        <a class="btn2" href="landing.html">← Back to Home</a>
+        <a class="btn2" href="architecture.html">View Architecture Docs</a>
+        <button class="btn" onclick="saveSettings()">Save Configuration</button>
+        <a class="btn2" href="#budget-audit" onclick="document.getElementById('budget-audit').scrollIntoView({behavior:'smooth'}); return false;">Budget Audit</a>
+      </div>
+      
+      <div class="save-status" id="saveStatus">✓ Settings saved successfully</div>
+    </div>
+
+    <div class="card">
+      <h2>Model VLAN Configuration</h2>
+      
+      <div class="vlan-section">
+        <div class="vlan-header">
+          <div>
+            <div class="vlan-title">VLAN 10 - Research Layer (Perplexity)</div>
+            <div class="vlan-description">Handles initial context gathering, source validation, technical specification lookup. Enable when you need grounded information before creative expansion.</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="vlan10" onchange="updateSettings()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="vlan-section">
+        <div class="vlan-header">
+          <div>
+            <div class="vlan-title">VLAN 20 - Narrative Expansion (Claude)</div>
+            <div class="vlan-description">Transforms technical concepts into accessible frameworks. Enable for essays, long-form content, human-centered translation of complex systems.</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="vlan20" onchange="updateSettings()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="vlan-section">
+        <div class="vlan-header">
+          <div>
+            <div class="vlan-title">VLAN 30 - Clarity Audit (Gemini)</div>
+            <div class="vlan-description">Reviews output for logical consistency, identifies ambiguity, flags unsupported claims. Enable as quality gate before structural review.</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="vlan30" onchange="updateSettings()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="vlan-section">
+        <div class="vlan-header">
+          <div>
+            <div class="vlan-title">VLAN 40 - Structural Critique (DeepSeek)</div>
+            <div class="vlan-description">Analyzes architecture, tests edge cases, challenges assumptions. Enable when you need adversarial review before final integration.</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="vlan40" onchange="updateSettings()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="vlan-section">
+        <div class="vlan-header">
+          <div>
+            <div class="vlan-title">VLAN 50 - Final Integration (ChatGPT)</div>
+            <div class="vlan-description">Synthesizes multi-model outputs into cohesive deliverable. Enable as last stage in routing pipeline.</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="vlan50" onchange="updateSettings()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Triangle Test Protocol</h2>
+      
+      <div class="protocol-section">
+        <div class="select-group">
+          <label for="validationMode">Validation Mode</label>
+          <select id="validationMode" onchange="updateSettings()">
+            <option value="standard">Standard</option>
+            <option value="strict">Strict</option>
+            <option value="custom">Custom</option>
+          </select>
+          <p class="note" style="margin-top:8px;">Determines drift tolerance when content cycles through multiple models. Strict mode flags any semantic deviation; Standard allows minor variation; Custom lets you define acceptable ranges.</p>
+        </div>
+
+        <div class="select-group">
+          <label for="guardianThreshold">Guardian Threshold</label>
+          <select id="guardianThreshold" onchange="updateSettings()">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <p class="note" style="margin-top:8px;">Sets sensitivity for drift detection. High threshold catches subtle inconsistencies but may generate false positives during intentional iteration.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Four-Gate Authorization</h2>
+      
+      <div class="gate-section">
+        <div class="checkbox-group">
+          <input type="checkbox" id="modelAccessControls" onchange="updateSettings()">
+          <label for="modelAccessControls"><strong>Model Access Controls</strong><br/>
+          <span class="note">Define which VLANs can access specific project contexts. Prevents unintended model exposure to sensitive IP or creative direction.</span></label>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="outputLogging" onchange="updateSettings()" checked>
+          <label for="outputLogging"><strong>Output Logging</strong><br/>
+          <span class="note">Tracks all model responses for audit trail. Required for patent documentation and IP protection.</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="budget-audit">
+      <h2>📊 Personal Budget Audit & Analysis</h2>
+      <p class="sub"><strong>Date:</strong> <input type="date" id="auditDate" value="2025-12-26" style="background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px;color:var(--text);margin-left:8px"></p>
+      <p class="note">Complete financial audit to eliminate NSF fees, optimize spending, and create strategic buffers</p>
+      
+      <div class="budget-actions">
+        <button class="btn2" onclick="exportBudgetAudit()">Export as Markdown</button>
+        <button class="btn2" onclick="clearBudgetAudit()">Clear All</button>
+        <button class="btn" onclick="saveBudgetAudit()">Save Budget Data</button>
+      </div>
+      <div class="save-status" id="budgetSaveStatus">✓ Budget data saved successfully</div>
+
+      <div class="budget-section">
+        <h3>📊 INCOME ANALYSIS</h3>
+        
+        <div class="budget-subsection">
+          <h4>Monthly Income Sources</h4>
+          <table class="budget-table">
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Amount</th>
+                <th>Frequency</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="monthlyIncome">
+              <tr>
+                <td><input type="text" placeholder="Income source"></td>
+                <td><input type="number" placeholder="0.00" step="0.01"></td>
+                <td><input type="text" value="Monthly" readonly style="background:rgba(61,224,255,0.1)"></td>
+                <td><input type="text" placeholder="Notes"></td>
+              </tr>
+              <tr>
+                <td><input type="text" placeholder="Income source"></td>
+                <td><input type="number" placeholder="0.00" step="0.01"></td>
+                <td><input type="text" value="Monthly" readonly style="background:rgba(61,224,255,0.1)"></td>
+                <td><input type="text" placeholder="Notes"></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td><strong>TOTAL MONTHLY INCOME</strong></td>
+                <td><strong id="totalMonthlyIncome">$0.00</strong></td>
+                <td colspan="2"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="budget-subsection">
+          <h4>Annual/One-Time Income</h4>
+          <table class="budget-table">
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Amount</th>
+                <th>Date/Period</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody id="annualIncome">
+              <tr>
+                <td><input type="text" placeholder="Income source"></td>
+                <td><input type="number" placeholder="0.00" step="0.01"></td>
+                <td><input type="text" placeholder="Date/Period"></td>
+                <td><input type="text" placeholder="Notes"></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td><strong>TOTAL ANNUAL/ONE-TIME</strong></td>
+                <td><strong id="totalAnnualIncome">$0.00</strong></td>
+                <td colspan="2"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="budget-section">
+        <h3>💳 EXPENSE AUDIT</h3>
+        
+        <div class="budget-subsection">
+          <h4>Fixed Monthly Expenses (Essential)</h4>
+          
+          <div style="margin:16px 0;">
+            <h5 style="color:var(--accent);margin:12px 0 8px;">Housing</h5>
+            <table class="budget-table">
+              <thead>
+                <tr>
+                  <th>Expense</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Account</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="housingExpenses">
+                <tr>
+                  <td><input type="text" value="Rent/Mortgage"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01"></td>
+                  <td><input type="text" placeholder="Due date"></td>
+                  <td><input type="text" placeholder="Account"></td>
+                  <td><input type="text" placeholder="Notes"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" value="Property Tax"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01"></td>
+                  <td><input type="text" placeholder="Due date"></td>
+                  <td><input type="text" placeholder="Account"></td>
+                  <td><input type="text" placeholder="Notes"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" value="Home Insurance"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01"></td>
+                  <td><input type="text" placeholder="Due date"></td>
+                  <td><input type="text" placeholder="Account"></td>
+                  <td><input type="text" placeholder="Notes"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" value="HOA Fees"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01"></td>
+                  <td><input type="text" placeholder="Due date"></td>
+                  <td><input type="text" placeholder="Account"></td>
+                  <td><input type="text" placeholder="Notes"></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td><strong>Housing Subtotal</strong></td>
+                  <td><strong id="housingSubtotal">$0.00</strong></td>
+                  <td colspan="3"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div style="margin:16px 0;">
+            <h5 style="color:var(--accent);margin:12px 0 8px;">Utilities</h5>
+            <table class="budget-table">
+              <thead>
+                <tr>
+                  <th>Expense</th>
+                  <th>Amount</th>
+                  <th>Due Date</th>
+                  <th>Account</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="utilitiesExpenses">
+                <tr>
+                  <td><input type="text" value="Electricity"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01"></td>
+                  <td><input type="text" placeholder="Due date"></td>
+                  <td><input type="text" placeholder="Account"></td>
+                  <td><input type="text" placeholder="Notes"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" value="Water/Sewer"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01"></td>
+                  <td><input type="text" placeholder="Due date"></td>
+                  <td><input type="text" placeholder="Account"></td>
+                  <td><input type="text" placeholder="Notes"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" value="Internet"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01"></td>
+                  <td><input type="text" placeholder="Due date"></td>
+                  <td><input type="text" placeholder="Account"></td>
+                  <td><input type="text" placeholder="Notes"></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td><strong>Utilities Subtotal</strong></td>
+                  <td><strong id="utilitiesSubtotal">$0.00</strong></td>
+                  <td colspan="3"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div style="margin:16px 0;">
+            <h5 style="color:var(--accent);margin:12px 0 8px;">Subscriptions & Recurring Services</h5>
+            <table class="budget-table">
+              <thead>
+                <tr>
+                  <th>Service</th>
+                  <th>Monthly Cost</th>
+                  <th>Annual Cost</th>
+                  <th>Status</th>
+                  <th>Last Used</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="subscriptions">
+                <tr>
+                  <td><input type="text" placeholder="Service name"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01" class="monthly-sub"></td>
+                  <td><input type="number" placeholder="0.00" step="0.01" class="annual-sub" readonly style="background:rgba(61,224,255,0.1)"></td>
+                  <td><select style="background:var(--card);border:1px solid var(--line);border-radius:6px;padding:6px;color:var(--text);font-size:13px"><option>Active</option><option>Inactive</option><option>Unused</option></select></td>
+                  <td><input type="text" placeholder="Last used"></td>
+                  <td><input type="text" placeholder="Action"></td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td><strong>TOTAL SUBSCRIPTIONS</strong></td>
+                  <td><strong id="totalSubscriptionsMonthly">$0.00</strong></td>
+                  <td><strong id="totalSubscriptionsAnnual">$0.00</strong></td>
+                  <td colspan="3"></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="budget-section">
+        <h3>💰 CURRENT ACCOUNT BALANCES</h3>
+        <table class="budget-table">
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Current Balance</th>
+              <th>Type</th>
+              <th>Buffer Target</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="accountBalances">
+            <tr>
+              <td><input type="text" value="Checking 1"></td>
+              <td><input type="number" placeholder="0.00" step="0.01"></td>
+              <td><input type="text" value="Primary"></td>
+              <td><input type="number" placeholder="0.00" step="0.01"></td>
+              <td><input type="text" placeholder="Notes"></td>
+            </tr>
+            <tr>
+              <td><input type="text" value="Savings 1"></td>
+              <td><input type="number" placeholder="0.00" step="0.01"></td>
+              <td><input type="text" value="Emergency"></td>
+              <td><input type="number" placeholder="0.00" step="0.01"></td>
+              <td><input type="text" placeholder="Notes"></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><strong>Total Liquid Assets</strong></td>
+              <td><strong id="totalLiquidAssets">$0.00</strong></td>
+              <td colspan="3"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="budget-section">
+        <h3>📈 MONTHLY CASH FLOW SUMMARY</h3>
+        <table class="budget-table">
+          <tbody>
+            <tr>
+              <td><strong>Total Monthly Income</strong></td>
+              <td><strong id="summaryMonthlyIncome">$0.00</strong></td>
+            </tr>
+            <tr>
+              <td>Fixed Monthly Expenses</td>
+              <td id="summaryFixedExpenses">-$0.00</td>
+            </tr>
+            <tr>
+              <td>Variable Essential Expenses</td>
+              <td id="summaryVariableExpenses">-$0.00</td>
+            </tr>
+            <tr>
+              <td>Subscriptions</td>
+              <td id="summarySubscriptions">-$0.00</td>
+            </tr>
+            <tr>
+              <td>Debt Payments</td>
+              <td id="summaryDebt">-$0.00</td>
+            </tr>
+            <tr>
+              <td><strong>TOTAL MONTHLY EXPENSES</strong></td>
+              <td><strong id="summaryTotalExpenses">-$0.00</strong></td>
+            </tr>
+            <tr style="border-top:2px solid var(--accent);">
+              <td><strong>NET MONTHLY CASH FLOW</strong></td>
+              <td><strong id="netCashFlow" style="color:var(--accent);font-size:18px">$0.00</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="budget-section">
+        <h3>🎯 STRATEGIC RECOMMENDATIONS</h3>
+        <div style="margin:16px 0;">
+          <h4 style="color:var(--accent);margin:12px 0 8px;">Immediate Actions (This Week)</h4>
+          <textarea id="immediateActions" placeholder="List immediate actions to take..."></textarea>
+        </div>
+        <div style="margin:16px 0;">
+          <h4 style="color:var(--accent);margin:12px 0 8px;">Buffer Creation Strategy</h4>
+          <textarea id="bufferStrategy" placeholder="Describe buffer creation strategy..."></textarea>
+        </div>
+        <div style="margin:16px 0;">
+          <h4 style="color:var(--accent);margin:12px 0 8px;">Subscription Cancellations Recommended</h4>
+          <textarea id="cancellations" placeholder="List subscriptions to cancel..."></textarea>
+        </div>
+        <div style="margin:16px 0;">
+          <h4 style="color:var(--accent);margin:12px 0 8px;">Notes & Observations</h4>
+          <textarea id="notes" placeholder="Add notes, concerns, opportunities..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      © <span id="year"></span> Timothy I. Wheels. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // Load saved settings on page load
+    function loadSettings() {
+      const settings = JSON.parse(localStorage.getItem('cywSettings') || '{}');
+      
+      // Load VLAN toggles
+      ['vlan10', 'vlan20', 'vlan30', 'vlan40', 'vlan50'].forEach(id => {
+        const checkbox = document.getElementById(id);
+        if (checkbox) {
+          checkbox.checked = settings[id] !== false; // Default to true if not set
+        }
+      });
+      
+      // Load protocol settings
+      if (settings.validationMode) {
+        document.getElementById('validationMode').value = settings.validationMode;
+      }
+      if (settings.guardianThreshold) {
+        document.getElementById('guardianThreshold').value = settings.guardianThreshold;
+      }
+      
+      // Load gate settings
+      if (settings.modelAccessControls !== undefined) {
+        document.getElementById('modelAccessControls').checked = settings.modelAccessControls;
+      }
+      if (settings.outputLogging !== undefined) {
+        document.getElementById('outputLogging').checked = settings.outputLogging;
+      }
+    }
+
+    // Update settings in localStorage
+    function updateSettings() {
+      const settings = {
+        vlan10: document.getElementById('vlan10').checked,
+        vlan20: document.getElementById('vlan20').checked,
+        vlan30: document.getElementById('vlan30').checked,
+        vlan40: document.getElementById('vlan40').checked,
+        vlan50: document.getElementById('vlan50').checked,
+        validationMode: document.getElementById('validationMode').value,
+        guardianThreshold: document.getElementById('guardianThreshold').value,
+        modelAccessControls: document.getElementById('modelAccessControls').checked,
+        outputLogging: document.getElementById('outputLogging').checked,
+        lastUpdated: new Date().toISOString()
+      };
+      
+      localStorage.setItem('cywSettings', JSON.stringify(settings));
+    }
+
+    // Save settings with visual feedback
+    function saveSettings() {
+      updateSettings();
+      const status = document.getElementById('saveStatus');
+      status.classList.add('show');
+      setTimeout(() => {
+        status.classList.remove('show');
+      }, 3000);
+    }
+
+    // Budget Audit Functions
+    function calculateTotals() {
+      // Calculate monthly income
+      let monthlyTotal = 0;
+      document.querySelectorAll('#monthlyIncome input[type="number"]').forEach((input, index) => {
+        if (index % 4 === 1) { // Amount column
+          monthlyTotal += parseFloat(input.value) || 0;
+        }
+      });
+      document.getElementById('totalMonthlyIncome').textContent = '$' + monthlyTotal.toFixed(2);
+      document.getElementById('summaryMonthlyIncome').textContent = '$' + monthlyTotal.toFixed(2);
+
+      // Calculate annual income
+      let annualTotal = 0;
+      document.querySelectorAll('#annualIncome input[type="number"]').forEach((input, index) => {
+        if (index % 4 === 1) { // Amount column
+          annualTotal += parseFloat(input.value) || 0;
+        }
+      });
+      document.getElementById('totalAnnualIncome').textContent = '$' + annualTotal.toFixed(2);
+
+      // Calculate subscriptions
+      let subMonthly = 0;
+      let subAnnual = 0;
+      document.querySelectorAll('.monthly-sub').forEach(input => {
+        const monthly = parseFloat(input.value) || 0;
+        subMonthly += monthly;
+        const row = input.closest('tr');
+        const annualInput = row.querySelector('.annual-sub');
+        if (annualInput) {
+          annualInput.value = (monthly * 12).toFixed(2);
+          subAnnual += monthly * 12;
+        }
+      });
+      document.getElementById('totalSubscriptionsMonthly').textContent = '$' + subMonthly.toFixed(2);
+      document.getElementById('totalSubscriptionsAnnual').textContent = '$' + subAnnual.toFixed(2);
+      document.getElementById('summarySubscriptions').textContent = '-$' + subMonthly.toFixed(2);
+
+      // Calculate housing subtotal
+      let housingTotal = 0;
+      document.querySelectorAll('#housingExpenses input[type="number"]').forEach((input, index) => {
+        if (index % 5 === 1) { // Amount column
+          housingTotal += parseFloat(input.value) || 0;
+        }
+      });
+      document.getElementById('housingSubtotal').textContent = '$' + housingTotal.toFixed(2);
+
+      // Calculate utilities subtotal
+      let utilitiesTotal = 0;
+      document.querySelectorAll('#utilitiesExpenses input[type="number"]').forEach((input, index) => {
+        if (index % 5 === 1) { // Amount column
+          utilitiesTotal += parseFloat(input.value) || 0;
+        }
+      });
+      document.getElementById('utilitiesSubtotal').textContent = '$' + utilitiesTotal.toFixed(2);
+
+      // Calculate total expenses
+      const totalExpenses = housingTotal + utilitiesTotal + subMonthly;
+      document.getElementById('summaryFixedExpenses').textContent = '-$' + (housingTotal + utilitiesTotal).toFixed(2);
+      document.getElementById('summaryTotalExpenses').textContent = '-$' + totalExpenses.toFixed(2);
+
+      // Calculate net cash flow
+      const netFlow = monthlyTotal - totalExpenses;
+      const netFlowEl = document.getElementById('netCashFlow');
+      netFlowEl.textContent = '$' + netFlow.toFixed(2);
+      netFlowEl.style.color = netFlow >= 0 ? 'var(--success)' : '#ff4444';
+
+      // Calculate total liquid assets
+      let assetsTotal = 0;
+      document.querySelectorAll('#accountBalances input[type="number"]').forEach((input, index) => {
+        if (index % 5 === 1) { // Current Balance column
+          assetsTotal += parseFloat(input.value) || 0;
+        }
+      });
+      document.getElementById('totalLiquidAssets').textContent = '$' + assetsTotal.toFixed(2);
+    }
+
+    // Auto-calculate on input
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add event listeners to all number inputs
+      setTimeout(() => {
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+          input.addEventListener('input', calculateTotals);
+        });
+        calculateTotals();
+      }, 100);
+    });
+
+    function saveBudgetAudit() {
+      const budgetData = {
+        date: document.getElementById('auditDate').value,
+        monthlyIncome: Array.from(document.querySelectorAll('#monthlyIncome tr')).map(row => ({
+          source: row.querySelector('input[type="text"]')?.value || '',
+          amount: row.querySelector('input[type="number"]')?.value || 0,
+          notes: Array.from(row.querySelectorAll('input[type="text"]'))[3]?.value || ''
+        })),
+        subscriptions: Array.from(document.querySelectorAll('#subscriptions tr')).map(row => ({
+          service: row.querySelector('input[type="text"]')?.value || '',
+          monthly: row.querySelector('.monthly-sub')?.value || 0,
+          annual: row.querySelector('.annual-sub')?.value || 0,
+          status: row.querySelector('select')?.value || 'Active',
+          lastUsed: Array.from(row.querySelectorAll('input[type="text"]'))[1]?.value || '',
+          action: Array.from(row.querySelectorAll('input[type="text"]'))[2]?.value || ''
+        })),
+        accounts: Array.from(document.querySelectorAll('#accountBalances tr')).map(row => ({
+          account: row.querySelector('input[type="text"]')?.value || '',
+          balance: Array.from(row.querySelectorAll('input[type="number"]'))[0]?.value || 0,
+          type: Array.from(row.querySelectorAll('input[type="text"]'))[1]?.value || '',
+          buffer: Array.from(row.querySelectorAll('input[type="number"]'))[1]?.value || 0,
+          notes: Array.from(row.querySelectorAll('input[type="text"]'))[2]?.value || ''
+        })),
+        recommendations: {
+          immediateActions: document.getElementById('immediateActions').value,
+          bufferStrategy: document.getElementById('bufferStrategy').value,
+          cancellations: document.getElementById('cancellations').value,
+          notes: document.getElementById('notes').value
+        }
+      };
+      
+      localStorage.setItem('budgetAudit', JSON.stringify(budgetData));
+      const status = document.getElementById('budgetSaveStatus');
+      status.classList.add('show');
+      setTimeout(() => status.classList.remove('show'), 3000);
+    }
+
+    function loadBudgetAudit() {
+      const saved = localStorage.getItem('budgetAudit');
+      if (saved) {
+        const data = JSON.parse(saved);
+        if (data.date) document.getElementById('auditDate').value = data.date;
+        if (data.recommendations) {
+          if (data.recommendations.immediateActions) document.getElementById('immediateActions').value = data.recommendations.immediateActions;
+          if (data.recommendations.bufferStrategy) document.getElementById('bufferStrategy').value = data.recommendations.bufferStrategy;
+          if (data.recommendations.cancellations) document.getElementById('cancellations').value = data.recommendations.cancellations;
+          if (data.recommendations.notes) document.getElementById('notes').value = data.recommendations.notes;
+        }
+        calculateTotals();
+      }
+    }
+
+    function exportBudgetAudit() {
+      const date = document.getElementById('auditDate').value;
+      let markdown = `# Personal Budget Audit & Analysis\n**Date:** ${date}\n**Purpose:** Complete financial audit to eliminate NSF fees, optimize spending, and create strategic buffers\n\n`;
+      markdown += `## 📊 INCOME ANALYSIS\n\n### Monthly Income Sources\n| Source | Amount | Frequency | Notes |\n|--------|--------|-----------|-------|\n`;
+      document.querySelectorAll('#monthlyIncome tr').forEach(row => {
+        const inputs = row.querySelectorAll('input');
+        if (inputs.length > 0) {
+          markdown += `| ${inputs[0]?.value || ''} | $${inputs[1]?.value || '0.00'} | Monthly | ${inputs[3]?.value || ''} |\n`;
+        }
+      });
+      markdown += `| **TOTAL MONTHLY INCOME** | **$${document.getElementById('totalMonthlyIncome').textContent.replace('$', '')}** | | |\n\n`;
+      markdown += `## 💳 EXPENSE AUDIT\n\n### Subscriptions & Recurring Services\n| Service | Monthly Cost | Annual Cost | Status | Last Used | Action |\n|---------|--------------|-------------|--------|-----------|--------|\n`;
+      document.querySelectorAll('#subscriptions tr').forEach(row => {
+        const inputs = row.querySelectorAll('input, select');
+        if (inputs.length > 0) {
+          markdown += `| ${inputs[0]?.value || ''} | $${inputs[1]?.value || '0.00'} | $${inputs[2]?.value || '0.00'} | ${inputs[3]?.value || 'Active'} | ${inputs[4]?.value || ''} | ${inputs[5]?.value || ''} |\n`;
+        }
+      });
+      markdown += `| **TOTAL SUBSCRIPTIONS** | **$${document.getElementById('totalSubscriptionsMonthly').textContent.replace('$', '')}** | **$${document.getElementById('totalSubscriptionsAnnual').textContent.replace('$', '')}** | | | |\n\n`;
+      markdown += `## 📈 MONTHLY CASH FLOW SUMMARY\n\n| Category | Amount |\n|----------|--------|\n`;
+      markdown += `| **Total Monthly Income** | **${document.getElementById('summaryMonthlyIncome').textContent}** |\n`;
+      markdown += `| **TOTAL MONTHLY EXPENSES** | **${document.getElementById('summaryTotalExpenses').textContent}** |\n`;
+      markdown += `| **NET MONTHLY CASH FLOW** | **${document.getElementById('netCashFlow').textContent}** |\n\n`;
+      markdown += `## 🎯 STRATEGIC RECOMMENDATIONS\n\n### Immediate Actions (This Week)\n${document.getElementById('immediateActions').value || ''}\n\n`;
+      markdown += `### Buffer Creation Strategy\n${document.getElementById('bufferStrategy').value || ''}\n\n`;
+      markdown += `### Subscription Cancellations Recommended\n${document.getElementById('cancellations').value || ''}\n\n`;
+      markdown += `### Notes & Observations\n${document.getElementById('notes').value || ''}\n`;
+      
+      const blob = new Blob([markdown], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `budget_audit_${date || 'template'}.md`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearBudgetAudit() {
+      if (confirm('Are you sure you want to clear all budget data?')) {
+        document.querySelectorAll('input[type="text"], input[type="number"], textarea').forEach(input => {
+          if (input.id !== 'auditDate') input.value = '';
+        });
+        document.querySelectorAll('select').forEach(select => {
+          select.value = 'Active';
+        });
+        localStorage.removeItem('budgetAudit');
+        calculateTotals();
+      }
+    }
+
+    // Initialize
+    document.getElementById("year").textContent = new Date().getFullYear();
+    loadSettings();
+    loadBudgetAudit();
+  </script>
+</body>
+</html>
+

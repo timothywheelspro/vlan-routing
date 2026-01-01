@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CYW Architecture — Multi-Layered Orchestration Model</title>
+  <meta name="description" content="Complete documentation of the CYW multi-layered orchestration model for content and application production." />
+  <style>
+    :root { --bg:#0b0f14; --card:#0f1620; --text:#eaf2ff; --muted:#a9b7c7; --accent:#3de0ff; --line:#1f2b3a; }
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;}
+    .wrap{max-width:980px;margin:0 auto;padding:56px 20px;}
+    .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:40px}
+    .brand{font-weight:700;letter-spacing:.04em}
+    .pill{display:inline-block;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted);text-decoration:none}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:24px}
+    h1{font-size:42px;line-height:1.05;margin:0 0 12px}
+    h2{font-size:28px;line-height:1.2;margin:32px 0 20px;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:8px}
+    h3{font-size:20px;line-height:1.3;margin:24px 0 12px;color:var(--text)}
+    .sub{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 18px}
+    .note{color:var(--muted);font-size:13px;line-height:1.5}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .btn{background:var(--accent);color:#061019;border:0;border-radius:12px;padding:12px 14px;font-weight:700;text-decoration:none;display:inline-block;cursor:pointer}
+    .btn2{background:transparent;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-weight:700;text-decoration:none;display:inline-block}
+    .footer{margin-top:46px;color:var(--muted);font-size:13px}
+    
+    .layer-box{background:rgba(61,224,255,0.05);border-left:4px solid var(--accent);padding:20px;margin:20px 0;border-radius:8px}
+    .layer-box h3{margin-top:0;color:var(--accent)}
+    .layer-box ul{margin:12px 0;padding-left:20px}
+    .layer-box li{margin:8px 0;color:var(--muted);line-height:1.6}
+    
+    .vlan-tag{display:inline-block;background:rgba(61,224,255,0.1);color:var(--accent);padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;margin-right:8px}
+    
+    .flow-diagram{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin:24px 0;font-family:monospace;font-size:13px;line-height:1.8;overflow-x:auto}
+    .flow-diagram .layer{color:var(--accent);font-weight:600}
+    .flow-diagram .arrow{color:var(--muted);text-align:center;padding:4px 0}
+    
+    @media (max-width:700px){
+      h1{font-size:32px}
+      h2{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">TIMOTHY I. WHEELS</div>
+      <a class="pill" href="mailto:timothy@timothywheels.com">timothy@timothywheels.com</a>
+    </header>
+    
+    <div class="card">
+      <h1>CYW Architecture</h1>
+      <p class="sub">Multi-Layered Orchestration Model for Content & Application Production</p>
+      
+      <div class="cta">
+        <a class="btn2" href="landing.html">← Back to Home</a>
+        <a class="btn" href="settings.html">Configure Settings</a>
+        <a class="btn2" href="index.html">Portfolio</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>System Architecture Overview</h2>
+      <p class="sub">This architecture outlines a multi-layered orchestration model for content and application production, structured as follows:</p>
+      
+      <div class="flow-diagram">
+        <div class="layer">🔄 META-LAYER: ORCHESTRATION</div>
+        <div class="arrow">↓</div>
+        <div class="layer">🔍 LAYER 1: SCOUTS (INPUT)</div>
+        <div class="arrow">↓</div>
+        <div class="layer">📖 LAYER 2: STORYWEAVERS (NARRATIVE)</div>
+        <div class="arrow">↓</div>
+        <div class="layer">💡 LAYER 3: STRATEGISTS (CLARITY)</div>
+        <div class="arrow">↓</div>
+        <div class="layer">🏗️ LAYER 4: ARCHITECTS (STRUCTURE)</div>
+        <div class="arrow">↓</div>
+        <div class="layer">🔨 LAYER 5: BUILDERS (CREATION/EXPERIMENTATION)</div>
+        <div class="arrow">↓</div>
+        <div class="layer">🔗 LAYER 6: INTEGRATORS (SYNTHESIS)</div>
+        <div class="arrow">↓</div>
+        <div class="layer">🎤 LAYER 7: VOICES/EXPRESSION (OUTPUT)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Layer Details</h2>
+      
+      <div class="layer-box">
+        <h3><span class="vlan-tag">VLAN 99</span> META-LAYER (ORCHESTRATION)</h3>
+        <p><strong>Platform:</strong> Notion AI (Virgil OS Guardian Mode)</p>
+        <ul>
+          <li>Workspace operations</li>
+          <li>VOS enforcement</li>
+          <li>Database management</li>
+          <li>Audit logging</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Centralized control and enforcement</p>
+      </div>
+
+      <div class="layer-box">
+        <h3><span class="vlan-tag">VLAN 10</span> LAYER 1: SCOUTS (INPUT)</h3>
+        <p><strong>Platforms:</strong> Perplexity, Grok, Reddit, Pinterest, Snapchat</p>
+        <ul>
+          <li>Research & data terrain mapping</li>
+          <li>Signal detection</li>
+          <li>Pattern recognition</li>
+          <li>Source validation</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Signal detection, pattern recognition, terrain mapping</p>
+      </div>
+
+      <div class="layer-box">
+        <h3><span class="vlan-tag">VLAN 20-21</span> LAYER 2: STORYWEAVERS (NARRATIVE)</h3>
+        <p><strong>Platform:</strong> Claude (Primary narrative engine)</p>
+        <ul>
+          <li>Story development</li>
+          <li>Human systems logic</li>
+          <li>Emotional grounding</li>
+          <li>High-fidelity writing</li>
+          <li>Deep concept development</li>
+          <li>Rhetorical sophistication</li>
+          <li>Metaphor construction</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Transform signals into coherent narrative</p>
+      </div>
+
+      <div class="layer-box">
+        <h3><span class="vlan-tag">VLAN 40</span> LAYER 3: STRATEGISTS (CLARITY)</h3>
+        <p><strong>Platform:</strong> Gemini</p>
+        <ul>
+          <li>Clarity audit</li>
+          <li>Flow optimization</li>
+          <li>Redundancy removal</li>
+          <li>Readability enhancement</li>
+          <li>Logic strengthening</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Refine narrative for maximum clarity and impact</p>
+      </div>
+
+      <div class="layer-box">
+        <h3><span class="vlan-tag">VLAN 30</span> LAYER 4: ARCHITECTS (STRUCTURE)</h3>
+        <p><strong>Platform:</strong> DeepSeek</p>
+        <ul>
+          <li>Structural critique</li>
+          <li>Pressure-testing</li>
+          <li>Logic integrity</li>
+          <li>Architectural analysis</li>
+          <li>Compression & optimization</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Verify structural coherence and logical integrity</p>
+      </div>
+
+      <div class="layer-box">
+        <h3><span class="vlan-tag">VLAN 70-80</span> LAYER 5: BUILDERS (CREATION/EXPERIMENTATION)</h3>
+        <p><strong>Platforms:</strong> Cursor, CLI/Terminal, VSCode, Replit, Unity, Lovable</p>
+        <ul>
+          <li>Code & automation builders</li>
+          <li>Experience & app builders</li>
+          <li>3D visualization</li>
+          <li>Interactive simulations</li>
+          <li>Rapid prototyping</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Transform concepts into functional tools and experiences</p>
+      </div>
+
+      <div class="layer-box">
+        <h3><span class="vlan-tag">VLAN 50</span> LAYER 6: INTEGRATORS (SYNTHESIS)</h3>
+        <p><strong>Platforms:</strong> ChatGPT, n8n</p>
+        <ul>
+          <li>Final integration</li>
+          <li>Branding & polish</li>
+          <li>Synthesis across models</li>
+          <li>Voice matching</li>
+          <li>CYW signature application</li>
+          <li>Workflow automation</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Unify all inputs into cohesive, branded output</p>
+      </div>
+
+      <div class="layer-box">
+        <h3>LAYER 7: VOICES/EXPRESSION (OUTPUT)</h3>
+        <p><strong>Platforms:</strong> ElevenLabs, Manus, LinkedIn, X/Twitter, Instagram, TikTok, Substack</p>
+        <ul>
+          <li>Voice production (text-to-speech)</li>
+          <li>Visual production (video editing)</li>
+          <li>Social distribution</li>
+          <li>Content deployment</li>
+        </ul>
+        <p class="note"><strong>Role:</strong> Transform integrated content into deployed output</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Triangle Test Protocol</h2>
+      <p class="sub">A three-validator consensus protocol implementing a four-gate validation framework for ensuring output quality and integrity.</p>
+      
+      <h3>Four-Gate Validation</h3>
+      <ol style="line-height:2;color:var(--muted);">
+        <li><strong>Gate 1 (Meta-Analysis):</strong> Guardian validates sovereignty preservation</li>
+        <li><strong>Gate 2 (Routing):</strong> Guardian validates ACL compliance</li>
+        <li><strong>Gate 3 (Payload):</strong> Parallel validation
+          <ul style="margin-top:8px;">
+            <li>3a: Perplexity validates factual accuracy</li>
+            <li>3b: Claude validates structural coherence</li>
+          </ul>
+        </li>
+        <li><strong>Gate 4 (Audit):</strong> Guardian validates evidence chain integrity</li>
+      </ol>
+
+      <h3>Validation Modes</h3>
+      <ul style="line-height:2;color:var(--muted);">
+        <li><strong>Standard:</strong> Allows minor variation during content cycles</li>
+        <li><strong>Strict:</strong> Flags any semantic deviation</li>
+        <li><strong>Custom:</strong> User-defined acceptable ranges</li>
+      </ul>
+
+      <h3>Guardian Thresholds</h3>
+      <ul style="line-height:2;color:var(--muted);">
+        <li><strong>Low:</strong> Basic drift detection</li>
+        <li><strong>Medium:</strong> Balanced sensitivity</li>
+        <li><strong>High:</strong> Catches subtle inconsistencies (may generate false positives)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Four-Gate Authorization</h2>
+      <p class="sub">Security and access control mechanisms for the CYW architecture.</p>
+      
+      <h3>Model Access Controls</h3>
+      <p>Define which VLANs can access specific project contexts. Prevents unintended model exposure to sensitive IP or creative direction.</p>
+      
+      <h3>Output Logging</h3>
+      <p>Tracks all model responses for audit trail. Required for patent documentation and IP protection.</p>
+      
+      <p class="note" style="margin-top:24px;padding-top:24px;border-top:1px solid var(--line);"><strong>Note:</strong> This architecture is production-ready. Configure it like you mean it.</p>
+    </div>
+
+    <div class="card">
+      <h2>Visual Architecture Diagram</h2>
+      <p class="sub">For a detailed Mermaid diagram of the complete architecture, see:</p>
+      <a class="btn2" href="MERMAID_DIAGRAMS.md" target="_blank">View Mermaid Diagrams →</a>
+    </div>
+
+    <footer class="footer">
+      © <span id="year"></span> Timothy I. Wheels. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
